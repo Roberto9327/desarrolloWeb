@@ -29,10 +29,26 @@ class AlumnosController extends Controller
         $alumnoNueva->State = 1;
 
         $alumnoNueva->save();
+        //dd($alumnoNueva);
         $alumnos = alumnos::all();
         return view('studentList')->with('alumnos', $alumnos);
     }
-
+    public function update(Request $request, $id){
+        
+        /*$alumnosActualizado = Alumnos::find($id);
+        $alumnosActualizado->Cod = $request->inputCodigo3;
+        $alumnosActualizado->Name = $request->inputNombre3;
+        $alumnosActualizado->updated_at = date('Y-m-d G:i:s');
+        $alumnosActualizado->save();*/
+        DB::table('alumnos')
+            ->where('Id', $id)
+            ->update(array( 'Cod' => $request->inputCodigo3,
+                                     'Name'   => $request->inputNombre3));
+        $alumnos = alumnos::all();
+        //dd($alumnosActualizado);
+        return view('studentList')->with('alumnos', $alumnos);
+    
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -77,10 +93,16 @@ class AlumnosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    /*public function update(Request $request, $id)
     {
-        //
-    }
+        $alumnosActualizada = Alumnos::find($id);
+        $alumnosActualizada->Cod = $request->Codigo;
+        $alumnosActualizada->Name = $request->Nombre;
+        $alumnosActualizada->save();
+
+        $alumnos = alumnos::all();
+        return view('studentList')->with('alumnos', $alumnos);
+    }*/
 
     /**
      * Remove the specified resource from storage.

@@ -11,20 +11,20 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                            <form method="POST" action="#">
+                            <form method="POST" action="{{ route('studentlist.update', $alumnos->Id) }}">
                             @method('PUT')
                             @csrf
                             <!--<form >-->
                                 <div class="form-group row">
                                     <label for="inputCodigo3" class="col-sm-2 col-form-label">Codigo</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" value='{{ $alumnos->Cod }}' name="inputCodigo3" id="inputCodigo3" placeholder="Codigo">
+                                    <input type="text" class="form-control" value='{{ $alumnos->Cod }}' name="inputCodigo3"  placeholder="Codigo">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputNombre3" class="col-sm-2 col-form-label">Nombre</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" value='{{ $alumnos->Name }}' name="inputNombre3" id="inputNombre3" placeholder="Nombre">
+                                    <input type="text" class="form-control" value='{{ $alumnos->Name }}' name="inputNombre3"  placeholder="Nombre">
                                     </div>
                                 </div>
                             
