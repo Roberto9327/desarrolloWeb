@@ -39,6 +39,10 @@ class AlumnosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function editar($item){
+        $alumnos = Alumnos::findOrFail($item);
+        return view('editar')->with('alumnos', $alumnos);
+    }
     public function store(Request $request)
     {
         //
