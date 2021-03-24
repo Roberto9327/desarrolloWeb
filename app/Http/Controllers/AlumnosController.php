@@ -40,10 +40,12 @@ class AlumnosController extends Controller
         $alumnosActualizado->Name = $request->inputNombre3;
         $alumnosActualizado->updated_at = date('Y-m-d G:i:s');
         $alumnosActualizado->save();*/
+        $fecha = date('Y-m-d G:i:s');
         DB::table('alumnos')
             ->where('Id', $id)
             ->update(array( 'Cod' => $request->inputCodigo3,
-                                     'Name'   => $request->inputNombre3));
+                                     'Name'   => $request->inputNombre3,
+                                        'updated_at'=>$fecha));
         $alumnos = alumnos::all();
         //dd($alumnosActualizado);
         return view('studentList')->with('alumnos', $alumnos);
