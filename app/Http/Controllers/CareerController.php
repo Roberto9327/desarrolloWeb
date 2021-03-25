@@ -3,22 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\materias;
+use App\Models\Career;
 use Illuminate\Support\Facades\DB;
 //use Illuminate\Http\Request;
 
-class MateriasController extends Controller
+class CareerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-         $materias = Materias::all();
-    //     dd($materias);
-        return view('materias')->with('materias', $materias);
+        $career =DB::table('career')
+        ->select('*')
+        ->where('State','=','1')
+        ->paginate(3);
+        return view('/career/careerList', ['career' => $career]);
     }
 
     /**
@@ -26,17 +23,35 @@ class MateriasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        $careerNueva = new career();
+        $careerNueva->Name = $request->inputNombre3;
+        $careerNueva->State = 1;
 
+        $careerNueva->save();
+        //dd($alumnoNueva);
+        return redirect('/career/careerList');
+    }
+    public function update(Request $request, $id){
+        
+        $fecha = date('Y-m-d G:i:s');
+        DB::table('career')
+            ->where('Id', $id)
+            ->update(array( 'Name'   => $request->inputNombre3,
+                                        'updated_at'=>$fecha));
+        return redirect('/career/careerList');
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function editar($item){
+        $career = Career::findOrFail($item);
+        return view('/career/editar')->with('career', $career);
+    }
     public function store(Request $request)
     {
         //
@@ -71,10 +86,16 @@ class MateriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    /*public function update(Request $request, $id)
     {
-        //
-    }
+        $alumnosActualizada = Alumnos::find($id);
+        $alumnosActualizada->Cod = $request->Codigo;
+        $alumnosActualizada->Name = $request->Nombre;
+        $alumnosActualizada->save();
+
+        $alumnos = alumnos::all();
+        return view('studentList')->with('alumnos', $alumnos);
+    }*/
 
     /**
      * Remove the specified resource from storage.

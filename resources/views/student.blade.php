@@ -27,6 +27,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="inputNombre3" class="col-sm-2 col-form-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                    <select class="form-control" name="inputCarrer3" id="inputCarrer3" >
+                                    @foreach ($career as $item)
+                                        <option value='{{ $item->Name }}'>{{ $item->Name }}</option>
+                                    @endforeach
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-sm-10">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
