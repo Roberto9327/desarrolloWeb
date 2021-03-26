@@ -27,6 +27,7 @@ Route::get('studentList', [AlumnosController::class, 'index'])->name('studentlis
 Route::post('studentList', [AlumnosController::class, 'create'])->name('studentlist.crear');
 Route::get('editar/{student}', [AlumnosController::class, 'editar'])->name('studentlist.editar');
 Route::put('editar/{student}', [AlumnosController::class, 'update'])->name('studentlist.update');
+Route::get('studentList/{student}', [AlumnosController::class, 'destroy'])->name('studentlist.destroy');
 
 ///carreras
 Route::get('/career/career', function(){

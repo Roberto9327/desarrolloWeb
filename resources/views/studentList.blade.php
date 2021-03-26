@@ -39,6 +39,16 @@
                                     <a href="{{route('studentlist.editar', $item->Id)}}" class="btn btn-primary btn-icon-split">
                                     <i class="fa fa-edit"></i>
                                     </a>
+                                    @if($item->State == 1)
+                                    <a href="{{route('studentlist.destroy', $item->Id)}}" class="btn btn-danger btn-icon-split">
+                                    <i class="fa fa-window-close"></i>
+                                    </a> 
+                                    @else
+
+                                    <a href="{{route('studentlist.destroy', $item->Id)}}" class="btn btn-success btn-icon-split">
+                                        <i class="fa fa-eye"></i>
+                                        </a> 
+                                    @endif
                                 </td>
                                 </tr>
                                 @endforeach

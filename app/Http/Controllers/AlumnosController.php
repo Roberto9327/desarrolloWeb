@@ -14,7 +14,6 @@ class AlumnosController extends Controller
     {
         $alumnos =DB::table('alumnos')
         ->select('*')
-        ->where('State','=','1')
         ->paginate(5);
         return view('studentList', ['alumnos' => $alumnos]);
     }
@@ -117,6 +116,21 @@ class AlumnosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $alumnos = Alumnos::findOrFail($id);
+        //dd($alumnos);
+        if($alumnos->State == 0){
+          DB::table('alumnos')
+            ->where('Id', $id)
+            ->update(array( 'State' => 1));  
+        }else{
+            DB::table('alumnos')
+            ->where('Id', $id)
+            ->update(array( 'State' => 0));  
+        }
+        
+        //$alumnos = alumnos::all()->paginate(2);
+        //dd($alumnosActualizado);
+        //return redirect('studentList')->with('alumnos', $alumnos);
+        return redirect('studentList');
     }
 }
