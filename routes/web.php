@@ -15,13 +15,14 @@ use App\Http\Controllers\CareerController;
 |
 */
 
-Route::get('/newCommit', function () {
-    return view('student');
+Route::get('/', function () {
+    return view('studentList');
 });
 ///Alumnos
 /*Route::get('student', function(){
     return view('student');
 })->name('student');*/
+Route::get('/', [AlumnosController::class, 'index'])->name('student.home');
 Route::get('student', [AlumnosController::class, 'career'])->name('student');
 Route::get('studentList', [AlumnosController::class, 'index'])->name('studentlist.index');
 Route::post('studentList', [AlumnosController::class, 'create'])->name('studentlist.crear');
